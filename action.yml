@@ -11,6 +11,6 @@ outputs:
   total:
     description: 'total badges added'
 runs:
-  using: 'node18'
+  using: 'node16'
   main: 'index.js'
   
