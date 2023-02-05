@@ -23,10 +23,11 @@ async function updateBadge(token, username) {
     req,
     `${START_COMMENT}\n${formatted}\n${END_COMMENT}`
   );
+  console.log(`Will replaced with: ${resultBadge}`);
   const response = await octokit.rest.repos.createOrUpdateFileContents({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    path: "README.md",
+    path: content.data.path,
     content: Buffer.from(resultBadge, "utf8").toString("base64"),
     message: "Update badges",
     sha: content.data.sha
