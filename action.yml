@@ -1,0 +1,16 @@
+name: 'Accredible Badge Readme'
+description: 'Update automatically your README with Badge from Accredible'
+inputs:
+  username:
+    description: 'username from Accredible'
+    requried: true
+  token:
+    description: 'GITHUB_TOKEN'
+    required: true
+outputs:
+  total:
+    descriptionn: 'total badges added'
+runs:
+  using: 'node18'
+  main: 'index.js'
+  
