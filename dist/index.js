@@ -11930,12 +11930,13 @@ async function updateBadge(token, username) {
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
   });
-  const plainText = Buffer.from(content.data.content, 'base64').toString('utf8');
-  const badges = await downloadBadges(username);
-  const formatted = string.join(
-    " ",
-    badges.map((badge) => `[![Badge](${badge.imageUrl})](${badge.badgeUrl})`)
+  const plainText = Buffer.from(content.data.content, "base64").toString(
+    "utf8"
   );
+  const badges = await downloadBadges(username);
+  const formatted = badges
+    .map((badge) => `[![Badge](${badge.imageUrl})](${badge.badgeUrl})`)
+    .join(" ");
   const req = new RegExp(REGEX);
   const resultBadge = plainText.replace(
     req,
@@ -11944,9 +11945,9 @@ async function updateBadge(token, username) {
   const response = await octokit.rest.repos.createOrUpdateFileContents({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    path: 'README.md',
-    content: Buffer.from(resultBadge, 'utf8').toString('base64'),
-    message: 'Update badges',    
+    path: "README.md",
+    content: Buffer.from(resultBadge, "utf8").toString("base64"),
+    message: "Update badges",
   });
   console.log(response.status);
   return badges.length;
