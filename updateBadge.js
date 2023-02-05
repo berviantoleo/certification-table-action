@@ -25,7 +25,9 @@ async function updateBadge(token, username) {
   const response = await octokit.rest.repos.createOrUpdateFileContents({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
+    path: 'README.md',
     content: btoa(resultBadge),
+    message: 'Update badges',    
   });
   console.log(response.status);
   return badges.length;

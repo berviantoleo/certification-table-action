@@ -21,6 +21,8 @@ async function downloadBadges(username) {
     return;
   }
 
+  console.log(`Get ${imageUrl.length} badges`);
+
   return imageUrl.map((url, index) => ({
     imageUrl: url,
     badgeUrl: badgeLink[index],

@@ -27,6 +27,8 @@ async function downloadBadges(username) {
     return;
   }
 
+  console.log(`Get ${imageUrl.length} badges`);
+
   return imageUrl.map((url, index) => ({
     imageUrl: url,
     badgeUrl: badgeLink[index],
@@ -11942,7 +11944,9 @@ async function updateBadge(token, username) {
   const response = await octokit.rest.repos.createOrUpdateFileContents({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
+    path: 'README.md',
     content: btoa(resultBadge),
+    message: 'Update badges',    
   });
   console.log(response.status);
   return badges.length;
