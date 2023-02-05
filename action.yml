@@ -9,7 +9,7 @@ inputs:
     required: true
 outputs:
   total:
-    descriptionn: 'total badges added'
+    description: 'total badges added'
 runs:
   using: 'node18'
   main: 'index.js'
