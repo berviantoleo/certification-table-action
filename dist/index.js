@@ -11930,7 +11930,7 @@ async function updateBadge(token, username) {
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
   });
-  const plainText = atob(content.data.content);
+  const plainText = Buffer.from(content.data.content, 'base64').toString('utf8');
   const badges = await downloadBadges(username);
   const formatted = string.join(
     " ",
@@ -11945,7 +11945,7 @@ async function updateBadge(token, username) {
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     path: 'README.md',
-    content: btoa(resultBadge),
+    content: Buffer.from(resultBadge, 'utf8').toString('base64'),
     message: 'Update badges',    
   });
   console.log(response.status);
