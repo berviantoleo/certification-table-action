@@ -29,6 +29,7 @@ async function updateBadge(token, username) {
     path: "README.md",
     content: Buffer.from(resultBadge, "utf8").toString("base64"),
     message: "Update badges",
+    sha: content.data.sha
   });
   console.log(response.status);
   return badges.length;
