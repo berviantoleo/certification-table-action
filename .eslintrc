@@ -1,0 +1,7 @@
+{
+  "extends": "standard",
+  "ignorePatterns": ["dist/**/*.js"],
+  "env": {
+    "jest": true
+  }
+}
