@@ -34153,7 +34153,7 @@ async function downloadCertifications () {
 
 module.exports = { downloadCertifications }
 
-downloadCertifications().then(result => console.log(result))
+// downloadCertifications().then(result => console.log(result))
 
 
 /***/ }),
