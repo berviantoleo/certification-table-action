@@ -1,10 +1,9 @@
 const core = require('@actions/core')
-const { updateBadge } = require('./updateBadge')
+const { updateTable } = require('./updateTable')
 
 try {
-  const username = core.getInput('username')
   const githubToken = core.getInput('token')
-  updateBadge(githubToken, username)
+  updateTable(githubToken)
     .then((result) => {
       console.log(result)
       core.setOutput('total', result)

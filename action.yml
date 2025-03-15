@@ -1,16 +1,12 @@
-name: 'Accredible Badge Readme'
-description: 'Update automatically your README with Badge from Accredible'
+name: 'Certification Table Action Readme'
+description: 'Update automatically README with Certifications from Back4App'
 inputs:
-  username:
-    description: 'username from Accredible'
-    requried: true
   token:
     description: 'GITHUB_TOKEN'
     required: true
 outputs:
   total:
-    description: 'total badges added'
+    description: 'total certifications added'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
-  

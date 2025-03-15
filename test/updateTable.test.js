@@ -1,37 +1,28 @@
 jest.mock('@actions/github')
-jest.mock('axios')
-
-const { updateBadge } = require('../src/updateBadge')
+const { updateTable } = require('../src/updateTable')
 const axios = require('axios')
 const github = require('@actions/github')
 
-describe('Update Badge function', () => {
-  it('Update Badge Success', async () => {
+describe('Update Table function', () => {
+  it('Update Table Success', async () => {
     // setup download badges
     // return the first list
+    const newDate = new Date().toISOString()
+
     axios.get.mockReturnValueOnce(
       Promise.resolve({
         data: {
-          data: {
-            credentials: [{
-              badge_assertion_url: 'http://test.com',
-              url: 'http://badge.com'
-            }]
-          }
+          results: [{
+            Name: 'Sample Cert',
+            Expiration: { iso: newDate },
+            AchievedDate: { iso: newDate },
+            Link: 'https://test.com'
+          }]
         }
       })
     )
 
-    // return each details
-    axios.get.mockReturnValueOnce(
-      Promise.resolve({
-        data: {
-          image: 'http://image.test.com'
-        }
-      })
-    )
-
-    const dataContent = '<!--START_SECTION:accrediblebadges--> <!--END_SECTION:accrediblebadges-->'
+    const dataContent = '<!--START_SECTION:certificationtable--> <!--END_SECTION:certificationtable-->'
     const base64DataContent = Buffer.from(dataContent, 'utf8').toString('base64')
 
     github.getOctokit.mockReturnValue({
@@ -56,7 +47,7 @@ describe('Update Badge function', () => {
       }
     }
 
-    const responseData = await updateBadge('random', 'randomuser')
+    const responseData = await updateTable('random')
     expect(responseData).toEqual(1)
   })
 })
